@@ -1,6 +1,6 @@
 name: flutter_sidenav
 description:  Simple side-nav widget for Flutter
-version: 1.0.1
+version: 1.0.1+1
 homepage: https://github.com/kfiross/flutter_sidenav
 
 environment:
