@@ -18,12 +18,8 @@ class SideBar extends StatefulWidget {
   final Color backgroundColor;
   final double sideBarWidth;
   final double sideBarCollapsedWidth;
-  final CrossAxisAlignment crossAxisAlignment;
-  final MainAxisAlignment mainAxisAlignment;
 
   final Widget currentItem;
-  // final List<Widget> pages;
-  // final List<String> pagesNames;
 
   final List<SideNavItem> items;
   final Function show;
@@ -35,11 +31,8 @@ class SideBar extends StatefulWidget {
     this.backgroundColor = Colors.blueGrey,
     @required this.currentItem,
     @required this.items,
-    this.crossAxisAlignment = CrossAxisAlignment.center,
-    this.mainAxisAlignment = MainAxisAlignment.start,
     this.sideBarCollapsedWidth = 60,
     this.sideBarWidth = 180,
-    // @required this.pagesNames,
     this.show,
     this.selectedIndex, this.selectedColor = Colors.transparent,
   });
@@ -116,8 +109,6 @@ class _SideBarState extends State<SideBar> with SingleTickerProviderStateMixin {
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.start,
                     crossAxisAlignment: CrossAxisAlignment.start,
-                    // mainAxisAlignment: widget.mainAxisAlignment,
-                    // crossAxisAlignment: widget.crossAxisAlignment,
                     children: widget.items
                         .asMap()
                         .map((index, item) {
@@ -234,8 +225,6 @@ class NavItemTile extends StatelessWidget {
 }
 
 class SideBarScaffold extends StatefulWidget {
-  // final List<Widget> pages;
-  // final List<String> pagesNames;
   final List<SideNavItem> items;
   final Color backgroundColor;
   final Color selectedColor;
@@ -277,8 +266,6 @@ class _SideBarScaffoldState extends State<SideBarScaffold> {
       sideBarWidth: widget.sideBarWidth,
       items: widget.items,
       selectedColor: widget.selectedColor,
-      // pages: widget.pages,
-      // pagesNames: widget.pagesNames,
       selectedIndex: currentItemIndex,
       show: show,
     );
