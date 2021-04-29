@@ -161,17 +161,13 @@ class _SideBarState extends State<SideBar> with SingleTickerProviderStateMixin {
                                         ? 8
                                         : 8,
                               ),
-                              child: Directionality(
-                                textDirection: _first
-                                    ? TextDirection.ltr
-                                    : TextDirection.rtl,
-                                child: Icon(Icons.arrow_back_ios,
-                                    size: 24,
-                                    textDirection:
-                                        appLocale.languageCode == "he"
-                                            ? TextDirection.ltr
-                                            : TextDirection.rtl),
-                              )),
+                               child: Icon(
+                                  _first ? Icons.arrow_back_ios : Icons.arrow_forward_ios,
+                                  size: 24,
+                                  textDirection:
+                                      appLocale.languageCode == "he"
+                                          ? TextDirection.ltr
+                                          : TextDirection.rtl)),
                           onPressed: () {
                             _controller.forward(
                               from: 0,
