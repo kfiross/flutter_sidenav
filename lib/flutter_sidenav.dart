@@ -93,6 +93,8 @@ class _SideBarState extends State<SideBar> with SingleTickerProviderStateMixin {
         Tween<double>(begin: isCollapsed ? 0 : 0.5, end: isCollapsed ? 0.5 : 1)
             .animate(_controller);
 
+    final Locale appLocale = Localizations.localeOf(context);
+
     return Card(
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.zero),
       margin: EdgeInsets.zero,
@@ -102,7 +104,7 @@ class _SideBarState extends State<SideBar> with SingleTickerProviderStateMixin {
           duration: _controller.duration,
           color: widget.backgroundColor,
           width:
-              isCollapsed ? widget.sideBarCollapsedWidth : widget.sideBarWidth,
+          isCollapsed ? widget.sideBarCollapsedWidth : widget.sideBarWidth,
           child: Container(
             margin: const EdgeInsets.only(top: 24),
             height: MediaQuery.of(context).size.height,
@@ -121,28 +123,28 @@ class _SideBarState extends State<SideBar> with SingleTickerProviderStateMixin {
                         .map((index, item) {
 
 
-                          final view = NavItemTile(
-                            isCollapsed: showText ? true : isCollapsed,
-                            // hoverColor: Colors.blue,
-                            selectedColor: widget.selectedIndex != index ? null : widget.selectedColor,
-                            title: Text(
-                              item.name,
-                              style: TextStyle(
-                                color: widget.selectedIndex == index
-                                    ? Colors.white
-                                    : null,
-                              ),
-                            ),
-                            icon: Icon(
-                              item.iconData,
-                              color: widget.selectedIndex == index
-                                  ? Colors.white
-                                  : null,
-                            ),
-                            onPressed: () => widget.show(index),
-                          );
-                          return MapEntry<int, Widget>(index, view);
-                        })
+                      final view = NavItemTile(
+                        isCollapsed: showText ? true : isCollapsed,
+                        // hoverColor: Colors.blue,
+                        selectedColor: widget.selectedIndex != index ? null : widget.selectedColor,
+                        title: Text(
+                          item.name,
+                          style: TextStyle(
+                            color: widget.selectedIndex == index
+                                ? Colors.white
+                                : null,
+                          ),
+                        ),
+                        icon: Icon(
+                          item.iconData,
+                          color: widget.selectedIndex == index
+                              ? Colors.white
+                              : null,
+                        ),
+                        onPressed: () => widget.show(index),
+                      );
+                      return MapEntry<int, Widget>(index, view);
+                    })
                         .values
                         .toList(),
                   ),
@@ -161,15 +163,17 @@ class _SideBarState extends State<SideBar> with SingleTickerProviderStateMixin {
                         color: Colors.transparent,
                         child: IconButton(
                           icon: Container(
-                            margin: EdgeInsets.only(
-                                left: _first ? 0 : isCollapsed ? 8 : 8,
+                              margin: EdgeInsetsDirectional.only(
+                                end: _first ? 0 : isCollapsed ? 8 : 8,
 
-                            ),
-                            child: Icon(
-                                _first
-                                    ? Icons.arrow_forward_ios_outlined
-                                    : Icons.arrow_back_ios,
-                                size: 24),
+                              ),
+                              child: Directionality(
+                                textDirection: _first ? TextDirection.ltr : TextDirection.rtl,
+                                child: Icon(Icons.arrow_back_ios,
+                                    size: 24, textDirection: appLocale.languageCode == "he" ? TextDirection.ltr : TextDirection.rtl),
+                              )
+
+
                           ),
                           onPressed: () {
                             _controller.forward(
@@ -205,10 +209,10 @@ class NavItemTile extends StatelessWidget {
 
   NavItemTile(
       {@required this.isCollapsed,
-      @required this.title,
-      @required this.icon,
-      this.onPressed,
-      this.hoverColor, this.selectedColor});
+        @required this.title,
+        @required this.icon,
+        this.onPressed,
+        this.hoverColor, this.selectedColor});
 
   @override
   Widget build(BuildContext context) {
