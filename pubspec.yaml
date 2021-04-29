@@ -1,8 +1,7 @@
 name: flutter_sidenav
-description: A new Flutter project.
-version: 0.0.1
-author:
-homepage:
+description:  Simple side-nav widget for Flutter
+version: 1.0.0-non-safety
+homepage: https://github.com/kfiross/flutter_sidenav
 
 environment:
   sdk: ">=2.7.0 <3.0.0"
