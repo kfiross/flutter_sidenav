@@ -1,3 +1,3 @@
-## [1.0.0-non-safety] 
+## [1.0.0-non-nullsafety] 
 
 * Initial release
