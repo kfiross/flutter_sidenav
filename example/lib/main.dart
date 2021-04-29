@@ -10,9 +10,9 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      locale: Locale("he"),
+      locale: Locale("en"),
       supportedLocales: [
-        Locale("he", "")
+        Locale("en", "")
       ],
       localizationsDelegates: [
         // AppLocalizationsDelegate(),
