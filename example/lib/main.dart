@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter_sidenav/flutter_sidenav.dart';
 
@@ -6,12 +5,12 @@ void main() {
   runApp(MyApp());
 }
 
-class MyApp extends StatelessWidget{
+class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       home: SideBarScaffold(
-       selectedColor: Colors.blueGrey,
+        selectedColor: Colors.blueGrey,
         backgroundColor: Colors.grey[100],
         items: [
           SideNavItem(
@@ -33,9 +32,7 @@ class MyApp extends StatelessWidget{
       ),
     );
   }
-
 }
-
 
 class ExamplePage1 extends StatelessWidget {
   @override
@@ -81,5 +78,3 @@ class ExamplePage3 extends StatelessWidget {
     );
   }
 }
-
-
