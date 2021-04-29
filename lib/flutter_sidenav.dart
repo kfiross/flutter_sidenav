@@ -3,9 +3,9 @@ library flutter_sidenav;
 import 'package:flutter/material.dart';
 
 class SideNavItem {
-  final String name;
-  final IconData iconData;
-  final Widget page;
+  final String? name;
+  final IconData? iconData;
+  final Widget? page;
 
   const SideNavItem({
     this.name,
@@ -19,22 +19,22 @@ class SideBar extends StatefulWidget {
   final double sideBarWidth;
   final double sideBarCollapsedWidth;
 
-  final Widget currentItem;
+  final Widget? currentItem;
 
   final List<SideNavItem> items;
-  final Function show;
+  final Function? show;
 
   final int selectedIndex;
-  final Color selectedColor;
+  final Color? selectedColor;
 
   SideBar({
     this.backgroundColor = Colors.blueGrey,
-    @required this.currentItem,
-    @required this.items,
+    required this.currentItem,
+    required this.items,
     this.sideBarCollapsedWidth = 60,
     this.sideBarWidth = 180,
     this.show,
-    this.selectedIndex,
+    this.selectedIndex = 0,
     this.selectedColor = Colors.transparent,
   });
 
@@ -47,8 +47,8 @@ class _SideBarState extends State<SideBar> with SingleTickerProviderStateMixin {
   bool showText = false;
   bool _first = true;
 
-  AnimationController _controller;
-  Animation<double> _animation;
+  late AnimationController _controller;
+  late Animation<double> _animation;
 
   @override
   void initState() {
@@ -95,7 +95,7 @@ class _SideBarState extends State<SideBar> with SingleTickerProviderStateMixin {
       elevation: 4,
       child: Row(children: [
         AnimatedContainer(
-          duration: _controller.duration,
+          duration: _controller.duration!,
           color: widget.backgroundColor,
           width:
               isCollapsed ? widget.sideBarCollapsedWidth : widget.sideBarWidth,
@@ -120,7 +120,7 @@ class _SideBarState extends State<SideBar> with SingleTickerProviderStateMixin {
                                 ? null
                                 : widget.selectedColor,
                             title: Text(
-                              item.name,
+                              item.name!,
                               style: TextStyle(
                                 color: widget.selectedIndex == index
                                     ? Colors.white
@@ -133,7 +133,7 @@ class _SideBarState extends State<SideBar> with SingleTickerProviderStateMixin {
                                   ? Colors.white
                                   : null,
                             ),
-                            onPressed: () => widget.show(index),
+                            onPressed: () => widget.show!(index),
                           );
                           return MapEntry<int, Widget>(index, view);
                         })
@@ -161,17 +161,13 @@ class _SideBarState extends State<SideBar> with SingleTickerProviderStateMixin {
                                         ? 8
                                         : 8,
                               ),
-                              child: Directionality(
-                                textDirection: _first
-                                    ? TextDirection.ltr
-                                    : TextDirection.rtl,
-                                child: Icon(Icons.arrow_back_ios,
-                                    size: 24,
-                                    textDirection:
-                                        appLocale.languageCode == "he"
-                                            ? TextDirection.ltr
-                                            : TextDirection.rtl),
-                              )),
+                              child: Icon(
+                                  _first ? Icons.arrow_back_ios : Icons.arrow_forward_ios,
+                                  size: 24,
+                                  textDirection:
+                                      appLocale.languageCode == "he"
+                                          ? TextDirection.ltr
+                                          : TextDirection.rtl)),
                           onPressed: () {
                             _controller.forward(
                               from: 0,
@@ -190,24 +186,24 @@ class _SideBarState extends State<SideBar> with SingleTickerProviderStateMixin {
             ),
           ),
         ),
-        Expanded(child: widget.currentItem)
+        Expanded(child: widget.currentItem!)
       ]),
     );
   }
 }
 
 class NavItemTile extends StatelessWidget {
-  final Color hoverColor;
+  final Color? hoverColor;
   final Widget title;
   final Widget icon;
   final bool isCollapsed;
-  final Function onPressed;
-  final Color selectedColor;
+  final Function? onPressed;
+  final Color? selectedColor;
 
   NavItemTile(
-      {@required this.isCollapsed,
-      @required this.title,
-      @required this.icon,
+      {required this.isCollapsed,
+      required this.title,
+      required this.icon,
       this.onPressed,
       this.hoverColor,
       this.selectedColor});
@@ -216,10 +212,11 @@ class NavItemTile extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       height: 58,
-      child: FlatButton(
-        padding: EdgeInsets.all(0),
-        onPressed: onPressed,
-        hoverColor: hoverColor,
+      child: TextButton(
+        style: TextButton.styleFrom(
+          padding: EdgeInsets.all(0),
+        ),
+        onPressed: onPressed as void Function()?,
         child: ListTile(
           selected: selectedColor != null,
           selectedTileColor: selectedColor,
@@ -234,14 +231,14 @@ class NavItemTile extends StatelessWidget {
 class SideBarScaffold extends StatefulWidget {
   final List<SideNavItem> items;
   final Color backgroundColor;
-  final Color selectedColor;
+  final Color? selectedColor;
   final double sideBarWidth;
 
   const SideBarScaffold({
-    Key key,
+    Key? key,
     this.backgroundColor = Colors.blueGrey,
     this.sideBarWidth = 180,
-    @required this.items,
+    required this.items,
     this.selectedColor,
   }) : super(key: key);
 
@@ -250,14 +247,13 @@ class SideBarScaffold extends StatefulWidget {
 }
 
 class _SideBarScaffoldState extends State<SideBarScaffold> {
-  Widget currentItem;
-  int currentItemIndex;
+  Widget? currentItem;
+  int currentItemIndex = 0;
 
   @override
   void initState() {
     super.initState();
     currentItem = widget.items.first.page;
-    currentItemIndex = 0;
   }
 
   void show(int index) {

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_sidenav/flutter_sidenav.dart';
 
 void main() {
@@ -9,6 +10,16 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      locale: Locale("he"),
+      supportedLocales: [
+        Locale("he", "")
+      ],
+      localizationsDelegates: [
+        // AppLocalizationsDelegate(),
+        GlobalMaterialLocalizations.delegate,
+        GlobalWidgetsLocalizations.delegate,
+        // const FallbackCupertinoLocalisationsDelegate(),
+      ],
       home: SideBarScaffold(
         selectedColor: Colors.blueGrey,
         backgroundColor: Colors.grey[100],
