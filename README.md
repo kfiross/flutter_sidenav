@@ -8,4 +8,4 @@ Heavily inspired by the package [sidenavbar](https://pub.dev/packages/sidenavbar
 
 ## Example
 
-![](gif/example.gif)
+![](gif/example2.gif)
