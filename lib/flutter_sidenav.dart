@@ -300,10 +300,11 @@ class NavItemTile extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       height: 58,
-      child: FlatButton(
-        padding: EdgeInsets.all(0),
+      child: TextButton(
+        style: TextButton.styleFrom(
+          padding: EdgeInsets.all(0),
+        ),
         onPressed: onPressed,
-        hoverColor: hoverColor,
         child: ListTile(
           selected: selectedColor != null,
           selectedTileColor: selectedColor,
