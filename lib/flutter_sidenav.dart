@@ -82,11 +82,11 @@ class _SideBarState extends State<SideBar> with SingleTickerProviderStateMixin {
             onItemTap: widget.show),
         Expanded(
             child: PageView(
-          physics: NeverScrollableScrollPhysics(),
-          //child: pages[currentIndex]),
-          children: pages as List<Widget>,
-          controller: widget.pageController,
-        ))
+              physics: NeverScrollableScrollPhysics(),
+              //child: pages[currentIndex]),
+              children: pages as List<Widget>,
+              controller: widget.pageController,
+            ))
       ]),
     );
   }
@@ -197,31 +197,31 @@ class _SideNavMenuState extends State<SideNavMenu>
                 children: widget.items!
                     .asMap()
                     .map((index, item) {
-                      final view = NavItemTile(
-                        isCollapsed: showText ? true : isCollapsed,
-                        // hoverColor: Colors.blue,
-                        selectedColor: _selectedIndex != index
-                            ? null
-                            : widget.selectedColor,
-                        title: Text(
-                          item.name!,
-                          style: TextStyle(
-                            color:
-                                _selectedIndex == index ? Colors.white : null,
-                          ),
-                        ),
-                        icon: item.iconData == null
-                            ? null
-                            : Icon(
-                                item.iconData,
-                                color: _selectedIndex == index
-                                    ? Colors.white
-                                    : null,
-                              ),
-                        onPressed: () => widget.onItemTap!(index),
-                      );
-                      return MapEntry<int, Widget>(index, view);
-                    })
+                  final view = NavItemTile(
+                    isCollapsed: showText ? true : isCollapsed,
+                    // hoverColor: Colors.blue,
+                    selectedColor: _selectedIndex != index
+                        ? null
+                        : widget.selectedColor,
+                    title: Text(
+                      item.name!,
+                      style: TextStyle(
+                        color:
+                        _selectedIndex == index ? Colors.white : null,
+                      ),
+                    ),
+                    icon: item.iconData == null
+                        ? null
+                        : Icon(
+                      item.iconData,
+                      color: _selectedIndex == index
+                          ? Colors.white
+                          : null,
+                    ),
+                    onPressed: () => widget.onItemTap!(index),
+                  );
+                  return MapEntry<int, Widget>(index, view);
+                })
                     .values
                     .toList(),
               ),
@@ -244,8 +244,8 @@ class _SideNavMenuState extends State<SideNavMenu>
                               end: _first
                                   ? 0
                                   : isCollapsed
-                                      ? 8
-                                      : 8,
+                                  ? 8
+                                  : 8,
                             ),
                             child: Icon(
                                 _first
@@ -287,11 +287,11 @@ class NavItemTile extends StatelessWidget {
 
   NavItemTile(
       {required this.isCollapsed,
-      required this.title,
-      required this.icon,
-      this.onPressed,
-      this.hoverColor,
-      this.selectedColor});
+        required this.title,
+        required this.icon,
+        this.onPressed,
+        this.hoverColor,
+        this.selectedColor});
 
   @override
   Widget build(BuildContext context) {

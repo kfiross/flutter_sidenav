@@ -3,7 +3,6 @@
 Simple side-nav widget for Flutter  
 Heavily inspired by the package [sidenavbar](https://pub.dev/packages/sidenavbar)
 
-
 ## Features
 
 * **History** : Jumping back to the last navigated tab on back press
@@ -11,6 +10,7 @@ Heavily inspired by the package [sidenavbar](https://pub.dev/packages/sidenavbar
 * Each tab state saved even if opening other tabs
 * SideNav is animated
 
+**Supports Null-Safety!** 
 
 ## Example
 
