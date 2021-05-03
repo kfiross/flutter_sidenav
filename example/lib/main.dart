@@ -13,7 +13,7 @@ class MyApp extends StatelessWidget {
         selectedColor: Colors.blueGrey,
         sideBarWidth: 250,
         backgroundColor: Colors.grey[100],
-        alwaysOpened: true,
+        // alwaysOpened: true,    // default is false
         items: [
           SideNavItem(
             name: "Tab 1",
