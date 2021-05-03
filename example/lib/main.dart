@@ -11,7 +11,9 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       home: SideBarScaffold(
         selectedColor: Colors.blueGrey,
+        sideBarWidth: 250,
         backgroundColor: Colors.grey[100],
+        alwaysOpened: true,
         items: [
           SideNavItem(
             name: "Tab 1",
